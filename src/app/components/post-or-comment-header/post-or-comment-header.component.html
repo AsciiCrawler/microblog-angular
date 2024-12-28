@@ -1,0 +1,9 @@
+<div class="header">
+    <div class="profile">
+        @if (photo_url().length > 0) {
+        <img [src]="photo_url()" alt="">
+        }
+    </div>
+    <a routerLink="/profile/{{username()}}" class="name">{{username()}}</a>
+    <span class="date">{{created_at()}}</span>
+</div>

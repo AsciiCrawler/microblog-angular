@@ -1,0 +1,63 @@
+:host {
+    width: 100%;
+    margin: 20px 0px;
+    padding: 0px 1rem;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid #80808080;
+    padding: 1rem 1rem;
+
+    .title {
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+
+    textarea {
+        padding: 0.5rem;
+        margin: 1rem 0px;
+        background-color: transparent;
+        border: 1px solid gray;
+        border-radius: 10px;
+        color: white;
+        resize: none;
+    }
+
+    .bar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem 0px 0px 0px;
+
+        button, label {
+            padding: 0.5rem;
+            background: transparent;
+
+            cursor: pointer;
+            transition: all ease-in-out 200ms;
+        }
+
+        label:hover, button:hover {
+            filter: brightness(1.5);
+        }
+
+        label:first-child {
+            border: none;
+            border-right: 1px solid #80808080;
+            padding: 0px 20px 0px 10px;
+        }
+
+        button:last-child {
+            border: none;
+            border-left: 1px solid #80808080;
+            padding: 0px 10px 0px 20px;
+        }
+
+        .post {
+            margin: 0rem 0px 0px auto;
+        }
+    }
+}

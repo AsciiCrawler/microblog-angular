@@ -1,0 +1,13 @@
+<video class="background_anime" preload="none" autoplay playsinline muted loop id="background_anime">
+    <source src="assets/videos/background_anime.webm" type="video/webm" />
+</video>
+
+<div class="foreground">
+    <router-outlet />
+</div>
+
+<div class="toast_container">
+    @for (item of toastService.toasts; track $index) {
+    <app-toast [uuid]="item.uuid" [message]="item.message" [isError]="item.isError"></app-toast>
+    }
+</div>

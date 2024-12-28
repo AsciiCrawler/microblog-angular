@@ -1,0 +1,23 @@
+<app-center-container>
+    <app-header />
+    @if(isMyProfile){
+    <app-uploadbox />
+    }
+    @if (posts.length > 0) {
+    @for (item of posts; track $index) {
+    <app-post (onDelete)="onDelete($event)" [post_uuid]="item.SK" [user_photo_key]="item.user.photo_key"
+        [username]="item.user.username_original" [text]="item.text" [photo_key]="item.photo_key"
+        [created_at]="item.created_at"></app-post>
+    }
+    }
+
+    @if(isLoading){
+    <div class="loader_container">
+        <app-loader [loading]="true" />
+    </div>
+    }
+
+    @if (LastEvaluatedKey != null) {
+    <app-fetch-more-button (click)="fetchPost()" message="Fetch more post" />
+    }
+</app-center-container>

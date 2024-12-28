@@ -1,0 +1,33 @@
+.background_anime {
+    pointer-events: none;
+    touch-action: none;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    object-fit: cover;
+    object-position: bottom;
+    opacity: 0.25;
+}
+
+.foreground {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.toast_container {
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    right: 1rem;
+    width: 100vw;
+    height: 100vh;
+}

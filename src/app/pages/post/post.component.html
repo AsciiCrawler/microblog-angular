@@ -1,0 +1,17 @@
+<app-center-container>
+    <div (click)="(goBack())" class="go_back">
+        <img src="/assets/icons/arrow-back.svg">
+        <span>Go back</span>
+    </div>
+    @if (post != null) {
+    <app-post [created_at]="post.created_at" [post_uuid]="post.SK" [photo_key]="post.photo_key" [text]="post.text"
+        [user_photo_key]="post.user.photo_key" [username]="post.user.username_original"></app-post>
+
+    <app-uploadbox [post_uuid]="post.SK | parseSk" [isComment]="true"></app-uploadbox>
+    <app-comments [post_uuid]="post.SK"></app-comments>
+    } @else {
+        <div class="loader_container">
+            <app-loader [loading]="true"/>
+        </div>
+    }
+</app-center-container>

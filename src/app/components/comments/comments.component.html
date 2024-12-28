@@ -1,0 +1,19 @@
+@if (comments.length > 0) {
+@for (comment of comments; track $index) {
+<div>
+    <app-post-or-comment-header [created_at]="comment.created_at | parsePostTimestamp"
+        [username]="comment.user.username_original" [photo_url]="comment.user.photo_key | parsePhotoKey" />
+    <span>{{comment.text}}</span>
+</div>
+}
+}
+
+@if(isLoading){
+    <div class="loader_container">
+        <app-loader [loading]="true" />
+    </div>
+}
+
+@if (LastEvaluatedKey != null) {
+ <app-fetch-more-button (click)="fetchComments()" message="Fetch more comments"/>
+}

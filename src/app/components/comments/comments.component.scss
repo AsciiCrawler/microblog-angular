@@ -1,0 +1,22 @@
+div {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex: 1;
+    padding: 0.5rem 1rem;
+    color: white;
+    border-bottom: 1px solid #808080;
+    span {
+        margin: 0.5rem 0px;
+        padding: 0.5rem 0px;
+        color: white;
+    }
+}
+
+.loader_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0px;
+    width: 100%;
+}

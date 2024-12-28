@@ -1,0 +1,30 @@
+<div class="container">
+    <app-post-or-comment-header [created_at]="created_at() | parsePostTimestamp"
+        [photo_url]="user_photo_key() | parsePhotoKey" [username]="username()" />
+
+    <div class="text">
+        <span>{{text()}}</span>
+    </div>
+
+    @if ((photo_key() | parsePhotoKey) != null) {
+    <div routerLink="/post/{{post_uuid() | parseSk}}" class="image_container">
+        <img [src]="photo_key() | parsePhotoKey" class="image" />
+    </div>
+    }
+
+    <div class="buttons_container">
+        <!-- <button>
+            <img src="assets/icons/favorite.svg" alt="">
+        </button> -->
+        <button routerLink="/post/{{post_uuid() | parseSk}}">
+            <img src="assets/icons/comment.svg" alt="">
+        </button>
+        @if(isDeleteVisible()){
+        <button (click)="openDeleteModal()">
+            <img src="assets/icons/delete.svg" alt="">
+        </button>
+        }
+    </div>
+</div>
+<app-confirmation-modal message="Do you really want to delete this post?" [isVisible]="isModalVisible"
+    (confirm)="confirmDelete()" (cancel)="cancelDelete()" [isLoading]="isLoadingDelete" />

@@ -1,0 +1,15 @@
+:host {
+    width: 100%;
+    display: flex;
+}
+
+input {
+    display: flex;
+    width: 100%;
+    border: 1px solid #80808080;
+    padding: 0.5rem 0.5rem;
+    border-radius: 3px;
+    margin: 0.25rem 0px;
+    background-color: transparent;
+    color: white;
+}

@@ -1,0 +1,34 @@
+<div class="container">
+    @if(!isLoading && profileState != 0){
+    <div class="profile">
+        @if(profileState == 1){
+        <input (change)="handleFileInput($event)" type="file" hidden id="post_file_upload_id">
+        }
+        <label for="post_file_upload_id" class="profile_photo_container">
+            <div class="image_container">
+                <img [src]="currentPhotoKey.length ==0 ?  'assets/icons/person.svg' : currentPhotoKey|parsePhotoKey"
+                    alt="">
+            </div>
+        </label>
+        <span class="name">{{currentUsername}}</span>
+    </div>
+    }
+    <div class="buttons">
+        <button [class]="currentRoute.includes('/home') ? 'selected':''" (click)="goTo('/home');">
+            <span>Home</span>
+        </button>
+        @if(isAuth()== true){
+        <button [class]="currentRoute.includes('/profile') ? 'selected':''" (click)="goToProfile();">
+            <span>Profile</span>
+        </button>
+        }
+        @if(isAuth()== false){
+        <button [class]="currentRoute.includes('/auth') ? 'selected':''" (click)="goTo('/auth');">
+            <span>Auth</span>
+        </button>
+        }
+        <button [class]="currentRoute.includes('/about') ? 'selected':''" (click)="goTo('/about');">
+            <span>About</span>
+        </button>
+    </div>
+</div>

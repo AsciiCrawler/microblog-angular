@@ -1,0 +1,18 @@
+@if (isAuth()) {
+<div class="container">
+    <span class="title">{{isComment() ? "Write a comment":"Write a post"}}</span>
+    <textarea rows="6" [(ngModel)]="body" type="text" class="te"></textarea>
+
+    <input (change)="handleFileInput($event)" type="file" hidden id="post_file_upload_id">
+    <div class="bar">
+        @if (isComment()=== false) {
+        <label for="post_file_upload_id" class="upload_photo" type="button">
+            <img src="assets/icons/upload.svg" alt="">
+        </label>
+        }
+        <button (click)="post()" class="post" type="button">
+            <img src="assets/icons/send.svg" alt="">
+        </button>
+    </div>
+</div>
+}

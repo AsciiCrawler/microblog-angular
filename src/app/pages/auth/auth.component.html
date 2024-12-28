@@ -1,0 +1,52 @@
+<div class="main_container">
+    <div class="container">
+        <input (change)="handleFileInput($event)" type="file" hidden id="post_file_upload_id">
+
+        @if (authState == GetAuthState().register) {
+        <label for="post_file_upload_id">
+            @if (filePreview.length > 0) {
+            <img [src]="filePreview" alt="Profile photo preview">
+            } @else {
+            <img src="assets/icons/person.svg" style="padding: 1rem; box-sizing: border-box;" alt="Profile photo preview">
+            }
+        </label>
+        }
+
+        <app-field [(field)]="username" placeholder="Username" />
+        @if (authState == GetAuthState().register) {
+        <span class="separator"></span>
+        }
+        <app-field [(field)]="password" placeholder="Password" />
+
+        @if (authState == GetAuthState().register) {
+        <app-field [(field)]="confirmPassword" placeholder="Confirm password" />
+        <!-- <span class="separator"></span>
+        <app-field [(field)]="country" placeholder="Country (Optional)" />
+        <app-field [(field)]="website" placeholder="Website (Optional)" /> -->
+        }
+
+        <!-- Buttons -->
+        @if (authState == GetAuthState().login) {
+        <app-auth-button (clickEvent)="login()" text="Login" />
+        }
+
+        @if (authState == GetAuthState().register) {
+        <app-auth-button (clickEvent)="register()" text="Create account" />
+        }
+
+        <!-- Change state -->
+        @if (authState == GetAuthState().login) {
+        <div class="change_auth_state">
+            <span>Don't have an account?</span>
+            <button (click)="authState = GetAuthState().register">Sign up</button>
+        </div>
+        }
+
+        @if (authState == GetAuthState().register) {
+        <div class="change_auth_state">
+            <span>Already have an account?</span>
+            <button (click)="authState = GetAuthState().login">Sign in</button>
+        </div>
+        }
+    </div>
+</div>

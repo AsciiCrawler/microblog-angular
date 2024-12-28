@@ -1,0 +1,16 @@
+<div [style]="isError() ? 'background-color: #fecaca;':'background-color: #acf8acd9;'" class="container">
+    <div class="header">
+        <div class="image_container">
+            @if (isError()) {
+            <img src="assets/icons/error_red.svg" alt="">
+            }@else {
+            <img src="assets/icons/check_green.svg" alt="">
+            }
+        </div>
+        <span>{{isError() ? "Error":"Sucess"}}</span>
+        <button (click)="remove()">
+            <img src="assets/icons/close.svg" alt="">
+        </button>
+    </div>
+    <span class="message">{{message()}}</span>
+</div>

@@ -1,0 +1,23 @@
+.go_back {
+    cursor: pointer;
+    display: flex;
+    padding: 1rem 1rem;
+    align-items: center;
+    width: min-content;
+
+    img {
+        margin: 0px 1rem 0px 0px;
+    }
+
+    span {
+        text-wrap: nowrap;
+    }
+}
+
+.loader_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0px;
+    width: 100%;
+}
