@@ -7,6 +7,7 @@ import { AuthButtonComponent } from '../../components/auth-button/auth-button.co
 import { firstValueFrom } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { ToastService } from '../../services/toast.service';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 export enum AuthState {
   login,
@@ -15,7 +16,7 @@ export enum AuthState {
 
 @Component({
   selector: 'app-auth',
-  imports: [FormsModule, FieldComponent, AuthButtonComponent],
+  imports: [FormsModule, FieldComponent, AuthButtonComponent, LoaderComponent],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
@@ -31,6 +32,9 @@ export class AuthComponent {
   country: string = "";
   website: string = "";
 
+  isLoading: boolean = false;
+  passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#^-_])[A-Za-z\d@$!%*?&#^-_]{8,}$/;
+
   public GetAuthState = (): typeof AuthState => AuthState;
 
   constructor(private backend: BackendService, private router: Router,
@@ -45,6 +49,8 @@ export class AuthComponent {
   }
 
   async login() {
+    this.isLoading = true;
+
     try {
       const response = await firstValueFrom(this.backend.login(this.username, this.password));
       if (response) {
@@ -53,16 +59,13 @@ export class AuthComponent {
     } catch (err: any) {
       const errorMessage = err?.error?.error || "Unexpected error during login";
       this.toastService.create(errorMessage, true);
+    } finally {
+      this.isLoading = false;
     }
   }
 
   async register() {
-    // Validate password confirmation
-    if (this.password !== this.confirmPassword) {
-      this.toastService.create("Password confirmation failed", true);
-      return;
-    }
-
+    this.isLoading = true;
     try {
       // Register user
       const registerResponse = await firstValueFrom(this.backend.register(this.username, this.password));
@@ -77,6 +80,7 @@ export class AuthComponent {
       const editResponse = await firstValueFrom(
         this.backend.edit(photo_key || "")
       );
+
       if (!editResponse) {
         throw new Error("Profile update failed");
       }
@@ -86,6 +90,8 @@ export class AuthComponent {
     } catch (err: any) {
       const errorMessage = err?.error?.error || "Unexpected error during registration";
       this.toastService.create(errorMessage, true);
+    } finally {
+      this.isLoading = false;
     }
   }
 

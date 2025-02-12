@@ -2,7 +2,7 @@
     @if(!isLoading && profileState != 0){
     <div class="profile">
         @if(profileState == 1){
-        <input (change)="handleFileInput($event)" type="file" hidden id="post_file_upload_id">
+        <input (change)="handleFileInput($event)" type="file" accept="image/*" hidden id="post_file_upload_id">
         }
         <label for="post_file_upload_id" class="profile_photo_container">
             <div class="image_container">

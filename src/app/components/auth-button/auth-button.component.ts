@@ -8,5 +8,6 @@ import { Component, EventEmitter, input, InputSignal, Output, output } from '@an
 })
 export class AuthButtonComponent {
   text: InputSignal<string> = input("");
+  disabled: InputSignal<boolean> = input(false);
   @Output() clickEvent = new EventEmitter<void>();
 }

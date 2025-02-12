@@ -1,1 +1,1 @@
-<button (click)="clickEvent.next()">{{text()}}</button>
+<button [style]="disabled() ? 'background-color: gray; cursor: not-allowed;' : 'background-color: #1d9bf0; cursor: pointer;'" [disabled]="disabled()" (click)="clickEvent.next()">{{text()}}</button>

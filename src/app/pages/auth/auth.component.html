@@ -1,13 +1,14 @@
 <div class="main_container">
     <div class="container">
-        <input (change)="handleFileInput($event)" type="file" hidden id="post_file_upload_id">
+        <input (change)="handleFileInput($event)" type="file" accept="image/*" hidden id="post_file_upload_id">
 
         @if (authState == GetAuthState().register) {
-        <label for="post_file_upload_id">
+        <label class="profile_photo_container" for="post_file_upload_id">
             @if (filePreview.length > 0) {
             <img [src]="filePreview" alt="Profile photo preview">
             } @else {
-            <img src="assets/icons/person.svg" style="padding: 1rem; box-sizing: border-box;" alt="Profile photo preview">
+            <img src="assets/icons/person.svg" style="padding: 1rem; box-sizing: border-box;"
+                alt="Profile photo preview">
             }
         </label>
         }
@@ -16,22 +17,29 @@
         @if (authState == GetAuthState().register) {
         <span class="separator"></span>
         }
-        <app-field [(field)]="password" placeholder="Password" />
+        <app-field [isPassword]="true" [(field)]="password" placeholder="Password" />
 
         @if (authState == GetAuthState().register) {
-        <app-field [(field)]="confirmPassword" placeholder="Confirm password" />
-        <!-- <span class="separator"></span>
-        <app-field [(field)]="country" placeholder="Country (Optional)" />
-        <app-field [(field)]="website" placeholder="Website (Optional)" /> -->
+        <app-field [isPassword]="true" [(field)]="confirmPassword" placeholder="Confirm password" />
         }
 
         <!-- Buttons -->
-        @if (authState == GetAuthState().login) {
+
+        <app-loader [loading]="isLoading" />
+
+        @if (authState == GetAuthState().login && !isLoading) {
         <app-auth-button (clickEvent)="login()" text="Login" />
         }
 
-        @if (authState == GetAuthState().register) {
-        <app-auth-button (clickEvent)="register()" text="Create account" />
+        @if (authState == GetAuthState().register && !isLoading) {
+        @if (password != confirmPassword && password.length >= 0) {
+        <app-auth-button [disabled]="true" text="Password do not match" />
+        } @else if (!passwordRegex.test(password)) {
+        <app-auth-button [disabled]="true" text="Password is not strong enough" />
+        } @else {
+        <app-auth-button [disabled]="false" (clickEvent)="register()" text="Create account" />
+        }
+
         }
 
         <!-- Change state -->

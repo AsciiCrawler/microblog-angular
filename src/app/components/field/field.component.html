@@ -1,1 +1,2 @@
-<input type="text" [placeholder]="placeholder()" (input)="onInputChange($event)" [value]="field()" />
+<input [type]="isPassword() ? 'password' : 'text'" [placeholder]="placeholder()" (input)="onInputChange($event)"
+    [value]="field()" />

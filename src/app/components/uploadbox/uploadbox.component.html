@@ -1,17 +1,27 @@
 @if (isAuth()) {
 <div class="container">
     <span class="title">{{isComment() ? "Write a comment":"Write a post"}}</span>
+
+    @if(filePreview.length > 0){
+    <img class="file_preview" [src]="filePreview" alt="">
+    }
+
     <textarea rows="6" [(ngModel)]="body" type="text" class="te"></textarea>
 
-    <input (change)="handleFileInput($event)" type="file" hidden id="post_file_upload_id">
+    <input (change)="handleFileInput($event)" type="file" accept="image/*" hidden id="post_file_upload_id">
     <div class="bar">
         @if (isComment()=== false) {
         <label for="post_file_upload_id" class="upload_photo" type="button">
             <img src="assets/icons/upload.svg" alt="">
         </label>
         }
-        <button (click)="post()" class="post" type="button">
+        <button [disabled]="isLoading || ( filePreview.length == 0 && body.length == 0) " (click)="post()" class="post"
+            type="button">
+            @if (isLoading) {
+            <app-loader [loading]="true" />
+            }@else {
             <img src="assets/icons/send.svg" alt="">
+            }
         </button>
     </div>
 </div>

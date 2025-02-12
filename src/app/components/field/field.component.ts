@@ -8,6 +8,7 @@ import { Component, EventEmitter, input, InputSignal, Output } from '@angular/co
 })
 export class FieldComponent {
   placeholder: InputSignal<string> = input("");
+  isPassword: InputSignal<boolean> = input(false);
 
   field: InputSignal<string> = input("");
   @Output() fieldChange = new EventEmitter<string>();

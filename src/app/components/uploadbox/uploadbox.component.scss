@@ -16,6 +16,13 @@
         font-size: 1.25rem;
     }
 
+    .file_preview {
+        max-width: 100%;
+        box-sizing: border-box;
+        border-radius: 1rem;
+        margin: 1rem 0px;
+    }
+
     textarea {
         padding: 0.5rem;
         margin: 1rem 0px;
